@@ -1,0 +1,11 @@
+[package]
+name = "hex_table"
+version = "0.1.0"
+authors = ["Jamen Marz <me@jamen.dev>"]
+edition = "2018"
+description = "Format a byte slice into a hex table."
+documentation = "https://docs.rs/hex_table"
+readme = "readme.md"
+license = "Zlib"
+homepage = "https://github.com/jamen/hex_table#readme"
+repository = "https://github.com/jamen/hex_table"
