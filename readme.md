@@ -4,9 +4,15 @@ Format a byte slice into a hex table.
 
 ```rust
 let x = "Lorem ipsum cupidatat voluptate exercitation aliquip exercitation \
-            do exercitation est? Consectetur est non commodo exercitation.";
+         do exercitation est? Consectetur est non commodo exercitation.";
 
-let table = HexTable { columns: 16, offset: 0, header: false, ascii: true };
+let table = HexTable {
+    columns: 16,
+    offset: 0,
+    header: false,
+    ascii: true,
+    zeros: true,
+};
 
 table.format(x.as_bytes(), &mut std::io::stdout()).unwrap();
 ```

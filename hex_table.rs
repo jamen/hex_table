@@ -5,17 +5,18 @@ pub struct HexTable {
     offset: usize,
     header: bool,
     ascii: bool,
+    zeros: bool,
 }
 
 impl Default for HexTable {
     fn default() -> Self {
-        HexTable { columns: 16, offset: 0, header: false, ascii: true }
+        HexTable { columns: 16, offset: 0, header: false, ascii: true, zeros: true }
     }
 }
 
 impl HexTable {
-    pub fn new(columns: usize, offset: usize, header: bool, ascii: bool) -> HexTable {
-        HexTable { columns, offset, header, ascii }
+    pub fn new(columns: usize, offset: usize, header: bool, ascii: bool, zeros: bool) -> HexTable {
+        HexTable { columns, offset, header, ascii, zeros }
     }
 
     pub fn format<Writer: io::Write>(&self, data: &[u8], out: &mut Writer) -> io::Result<()> {
@@ -61,7 +62,11 @@ impl HexTable {
             write!(out, "{:0>1$X}: ", self.offset + row_pos, offset_str_len)?;
 
             for _ in 0..self.columns {
-                write!(out, "{:0>1$X} ", data[col_pos], col_pad_len)?;
+                if !self.zeros && data[col_pos] == 0 {
+                    write!(out, "{} ", ".".repeat(col_pad_len))?;
+                } else {
+                    write!(out, "{:0>1$X} ", data[col_pos], col_pad_len)?;
+                }
 
                 col_pos += 1;
 
