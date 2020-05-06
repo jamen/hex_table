@@ -3,23 +3,23 @@
 Format a byte slice into a hex table.
 
 ```rust
-let contents = read("lorem_ipsum.txt").unwrap();
+let x = "Lorem ipsum cupidatat voluptate exercitation aliquip exercitation \
+            do exercitation est? Consectetur est non commodo exercitation.";
 
-let output = HexTable::default().format_with_ascii(&contents);
+let table = HexTable { columns: 16, offset: 0, header: false, ascii: true };
 
-println!("{}", output);
+table.format(x.as_bytes(), &mut std::io::stdout()).unwrap();
 ```
 
 ```
-    00 01 02 03 04 05 06 07 08 09 0a 0b 0c 0d 0e 0f
-00: 4c 6f 72 65 6d 20 69 70 73 75 6d 20 65 78 63 65 Lorem.ipsum.exce
-10: 70 74 65 75 72 20 63 6f 6e 73 65 63 74 65 74 75 pteur.consectetu
-20: 72 20 65 78 65 72 63 69 74 61 74 69 6f 6e 20 65 r.exercitation.e
-30: 78 20 6e 6f 6e 20 73 65 64 20 63 75 70 69 64 61 x.non.sed.cupida
-40: 74 61 74 20 65 78 63 65 70 74 65 75 72 2c 20 64 tat.excepteur..d
-50: 6f 6c 6f 72 20 65 78 65 72 63 69 74 61 74 69 6f olor.exercitatio
-60: 6e 20 63 6f 6e 73 65 71 75 61 74 20 63 75 6c 70 n.consequat.culp
-70: 61 20 72 65 70 72 65 68 65 6e 64 65 72 69 74 2e a.reprehenderit.
+00: 4C 6F 72 65 6D 20 69 70 73 75 6D 20 63 75 70 69 | Lorem.ipsum.cupi
+10: 64 61 74 61 74 20 76 6F 6C 75 70 74 61 74 65 20 | datat.voluptate.
+20: 65 78 65 72 63 69 74 61 74 69 6F 6E 20 61 6C 69 | exercitation.ali
+30: 71 75 69 70 20 65 78 65 72 63 69 74 61 74 69 6F | quip.exercitatio
+40: 6E 20 64 6F 20 65 78 65 72 63 69 74 61 74 69 6F | n.do.exercitatio
+50: 6E 20 65 73 74 3F 20 43 6F 6E 73 65 63 74 65 74 | n.est..Consectet
+60: 75 72 20 65 73 74 20 6E 6F 6E 20 63 6F 6D 6D 6F | ur.est.non.commo
+70: 64 6F 20 65 78 65 72 63 69 74 61 74 69 6F 6E 2E | do.exercitation.
 ```
 
 [Documentation](https://docs.rs/hex_table)
