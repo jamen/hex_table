@@ -9,3 +9,6 @@ readme = "readme.md"
 license = "Zlib"
 homepage = "https://github.com/jamen/hex_table#readme"
 repository = "https://github.com/jamen/hex_table"
+
+[lib]
+path = "hex_table.rs"
